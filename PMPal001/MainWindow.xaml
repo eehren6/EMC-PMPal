@@ -1,0 +1,106 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PMPal"    
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:SqlClient="clr-namespace:System.Data.SqlClient;assembly=System.Data.SqlClient" x:Class="PMPal.MainWindow"
+        mc:Ignorable="d"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+    xmlns:controls="clr-namespace:PMPal.Controls"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Medium"
+     TextElement.FontSize="14"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="PM-Pal" Height="800" Width="850" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+        <Style TargetType="{x:Type xctk:MaskedTextBox}" BasedOn="{StaticResource MaterialDesignTextBox}" />
+
+        <local:DebugDataBindingConverter x:Key="DebugBinding"/>
+
+    </Window.Resources>
+    <DockPanel>
+    <Menu DockPanel.Dock="Top" Height="25" Margin="-10,0,0,0">          
+            <MenuItem Header="_Menu" VerticalAlignment="Center"  Height="25">
+                <MenuItem Name="mnuPatient" Header="_Edit Patient" Click="mnuPatient_Click"/>
+                <MenuItem Name="mnuDental" Header="_Dental Patient" Click="mnuDental_Click"/>
+
+                <MenuItem Name="mnuProvider" Header="_Block Provider Schedule" Click="mnuProvider_Click" />
+
+                <MenuItem Name="mnuHoliday" Header="_View Holiday Schedule" Click="mnuHoliday_Click" />
+            </MenuItem>
+        
+        </Menu>
+        <materialDesign:DialogHost Identifier="diagHost" CloseOnClickAway="True">
+
+            <TabControl x:Name="tabMain">
+                <TabItem Name="plusTab" >
+                    <TabItem.Header>
+                        <Label Name="lblPlusHeader" Content="+" MouseLeftButtonDown="lblPlusHeader_MouseLeftButtonDown"  />
+                    </TabItem.Header>
+                </TabItem>
+                <!--<controls:CloseableTab Title="Patient Lookup">
+                    <Frame TabIndex="0" x:Name="_mainFrame" NavigationUIVisibility="Hidden" />
+                </controls:CloseableTab>-->
+
+            </TabControl>
+        </materialDesign:DialogHost>
+        <!--<StackPanel x:Name="pnlEvents" Grid.Row="1" Grid.RowSpan="5"  Grid.Column="4"  Margin="0,0,20,0" >
+
+            <WrapPanel Visibility="Hidden" Background="AliceBlue" HorizontalAlignment="Right">
+                <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="btnStart_Click" Padding="5,1,5,1"  >
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="DeepSkyBlue"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="BlueViolet"/>
+                                </Trigger>
+
+                                <Trigger Property="IsMouseCaptured" Value="True">
+                                    <Setter Property="Background" Value="CadetBlue"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Click="btnStop_Click" Padding="5,1,5,1">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="LightBlue"/>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="BlueViolet"/>
+                                </Trigger>
+
+                                <Trigger Property="IsMouseCaptured" Value="True">
+                                    <Setter Property="Background" Value="CadetBlue"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btnGetLocal" Content="Current Station Only" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnGetLocal_Click" Padding="5,1,5,1">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="DeepSkyBlue"/>
+                            -->
+    
+        <!--<StackPanel Orientation="Horizontal">
+            <TextBlock/>
+        </StackPanel>-->
+    </DockPanel>
+
+</Window>

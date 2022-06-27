@@ -1,0 +1,271 @@
+﻿<Page x:Class="PMPal.CariesForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Medium"
+     TextElement.FontSize="14"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:vm="clr-namespace:PMPal.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="800"
+      Title="CariesForm">
+    <Page.DataContext>
+        <vm:CariesFormViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <Style TargetType="Border" x:Key="borderstyle">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="header">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <!--<RowDefinition/>-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="20" FontWeight="Bold" Content="Universal Caries Risk Assessment Form" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="lblFName" Style="{StaticResource header}" >
+                <Run Text="Patient: "/>                    
+                <Run Text="{Binding Path=Person.Display_Name, Mode=OneWay}"/>
+            </TextBlock>
+            <TextBlock Grid.Column="1" Style="{StaticResource header}">
+                <Run Text="DOB: "/>
+                <Run Text="{Binding Path=Person.DOB_display, Mode=OneWay}"/>
+            </TextBlock> 
+            <TextBlock Grid.Row="1" Style="{StaticResource header}">
+                <Run Text="Encounter Date: " />
+                <Run Text="{Binding Path=RecordDate, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource header}">
+                <Run Text="Enc Nbr:" />
+                <Run Text="{Binding Path=EncNBR, Mode=OneWay}" />
+            </TextBlock> 
+        </Grid>
+        <Border x:Name="FrmGrid"  Style="{StaticResource borderstyle}" Grid.Row="2" Grid.ColumnSpan="3" >
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" >
+                <Grid Margin="5"  Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="3" x:Name="grdQuestionForm" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="16*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+            <!--<Grid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="FontSize" Value="6"/>
+                </Style>
+            </Grid.Resources>-->
+                    <Border Grid.RowSpan="21" Grid.ColumnSpan="2" Style="{StaticResource borderstyle}"/>
+                    <Border Grid.RowSpan="21" Grid.Column="2" Style="{StaticResource borderstyle}" />
+                    <Border Grid.RowSpan="21" Grid.Column="3" Style="{StaticResource borderstyle}" />
+                    <Border Grid.RowSpan="21" Grid.Column="4" Style="{StaticResource borderstyle}" />
+                    <Rectangle Grid.Row="1" Grid.ColumnSpan="5" Fill="DeepSkyBlue"/>
+                    <TextBlock Margin="5"  Grid.Column="2" Text="Low Risk (0 Points)"/>
+                <TextBlock Margin="5"  Grid.Column="3" Text="Medium Risk (1 Points)"/>
+                <TextBlock Margin="5" Grid.Column="4"  Text="High Risk (2 Points)"/>
+                    <TextBlock Margin="5" Grid.Row="1" Style="{StaticResource header}" Text="Contributing Conditions" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="Check all conditions that apply"/>
+                    <Border Grid.Row="2" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" x:Name="txtQ1" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Fluoride Exposure (drinking water, supplements, professional applications, toothpaste)" />
+                    <Border Grid.Row="3" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock  Grid.Row="3"  Grid.ColumnSpan="2" x:Name="txtQ2" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Sugary Foods or Drinks (juice, carbonated or noncarbonated soft drinks, energy drinks, medicinal syrups)"/>
+                    <Border Grid.Row="4" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="4" Grid.ColumnSpan="2" x:Name="txtQ3" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Caries Experience of Mother, Caregiver and/or other Siblings (for patients ages 0-14 only)"/>
+                    <Border Grid.Row="5" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="5" Grid.ColumnSpan="2" x:Name="txtQ4" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Dental Home: established patient of record, receiving regular dental care in a dental office"/>
+
+                    <Rectangle Grid.Row="6" Grid.ColumnSpan="5" Fill="DeepSkyBlue"/>
+                    <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource header}" Margin="5"  Text="General Health Conditions"/>
+                    <TextBlock Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Margin="5" Text="Check all conditions that apply"/>
+                    <Border Grid.Row="7" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="7" Grid.ColumnSpan="2" x:Name="txtQ5" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Special Health Care Needs (developmental, physical, medical or mental disabilities that prevent or limit performance of adequate oral health care by themselves or caregivers)"/>
+                    <Border Grid.Row="8" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="8" Grid.ColumnSpan="2" x:Name="txtQ6" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Chemo/Radiation Therapy (patients >6 years old only)"/>
+                    <Border Grid.Row="9" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="9" Grid.ColumnSpan="2" x:Name="txtQ7" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Eating Disorders (patients >6 years old only)"/>
+                    <Border Grid.Row="10" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="10" Grid.ColumnSpan="2" x:Name="txtQ8" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Medications that Reduce Salivary Flow (patients >6 years old only)"/>
+                    <Border Grid.Row="11" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="11" Grid.ColumnSpan="2" x:Name="txtQ9" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Drug/Alcohol (patients >6 years old only)"/>
+
+                    <Rectangle Grid.Row="12" Grid.ColumnSpan="5" Fill="DeepSkyBlue"/>
+                    <TextBlock Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource header}" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Clinical Conditions"/>
+                    <TextBlock Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Check all conditions that apply"/>
+                    <Border Grid.Row="12" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="13" Grid.ColumnSpan="2" x:Name="txtQ11" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Visual or Radiographically Evident Restorations/Cavitated or Non-cavitated (incipient) Carious Lesions"/>
+                    <Border Grid.Row="13" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="14" Grid.ColumnSpan="2" x:Name="txtQ12" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Teeth Missing Due to Caries"/>
+                    <Border Grid.Row="15" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="15" Grid.ColumnSpan="2" x:Name="txtQ13" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Visible Plaque"/>
+                    <Border Grid.Row="16" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="16" Grid.ColumnSpan="2" x:Name="txtQ14" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Dental/Orthodontic Appliances Present (fixed or removable)"/>
+                    <Border Grid.Row="17" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="17" Grid.ColumnSpan="2" x:Name="txtQ15" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Salivary Flow"/>
+                    <Border Grid.Row="18" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="18" Grid.ColumnSpan="2" x:Name="txtQ16" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Exposed Root Surfaces Present (patients >6 years old only)"/>
+                    <Border Grid.Row="19" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="19" Grid.ColumnSpan="2" x:Name="txtQ17" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Restorations with Overhangs and/or Open Margins; Open
+contacts with Food Impaction (patients >6 years old only)"/>
+                    <Border Grid.Row="20" Grid.ColumnSpan="5" Style="{StaticResource borderstyle}"/>
+                    <TextBlock Grid.Row="20" Grid.ColumnSpan="2" x:Name="txtQ18" VerticalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Unusual Tooth Morphology that compromises
+oral hygiene (patients >6 years old only) "/>
+                    <RadioButton Grid.Column="2" Grid.Row="2" GroupName="rbgroup1" Margin="5" Content="Yes"  Name="rbQ1low" Checked="rb_checkedChanged"  />
+                <RadioButton Grid.Column="3" Grid.Row="2" GroupName="rbgroup1" Margin="5" Content="No" Name="rbQ1med"  Checked="rb_checkedChanged" />
+
+                <RadioButton GroupName="rbgroup2" Grid.Column="4" Grid.Row="3" Margin="5" Name="rbQ2high" Checked="rb_checkedChanged">
+                    <RadioButton.Content>
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Frequent or prolonged exposure"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="rbgroup2" Content="At mealtimes" Margin="5" Grid.Row="3"   Grid.Column="2" Name="rbQ2low" Checked="rb_checkedChanged" />
+
+                <RadioButton GroupName="rbgroup3" Grid.Column="2"  Grid.Row="4"  Margin="5" Name="rbQ3low" Checked="rb_checkedChanged">
+                    <RadioButton.Content>
+                        <TextBlock VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Text="No carious lesions in last 24 month"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton  GroupName="rbgroup3" Grid.Column="4" Grid.Row="4" Margin="5" Name="rbQ3high" Checked="rb_checkedChanged">
+                    <RadioButton.Content>
+                        <TextBlock  Text="Carious lesions last 6 months" TextWrapping="Wrap" />
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="rbgroup3" Margin="5"  Grid.Column="3"  Grid.Row="4"  Name="rbQ3med" Checked="rb_checkedChanged">
+                    <RadioButton.Content>
+                        <TextBlock Text="Carious lesions last 7-23 months" TextWrapping="Wrap" />
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="rbgroup4"  Margin="5" Content="Yes"  Grid.Row="5" Grid.Column="2" Name="rbQ4low" Checked="rb_checkedChanged"  />
+                <RadioButton GroupName="rbgroup4" Margin="5" Content="No" Grid.Row="5" Grid.Column="3" Name="rbQ4med" Checked="rb_checkedChanged" />
+
+                <RadioButton GroupName="rbgroup5" Content="No" Margin="5" Grid.Row="7"  Grid.Column="2" Name="rbQ5low" Checked="rb_checkedChanged" />
+                <RadioButton GroupName="rbgroup5" Content="Yes (> 14 years)" Margin="5" Grid.Row="7"  Grid.Column="3" Name="rbQ5med" Checked="rb_checkedChanged" />
+                <RadioButton GroupName="rbgroup5" Content="Yes (ages 0-14)" Margin="5" Grid.Row="7"  Grid.Column="4" Name="rbQ5high" Checked="rb_checkedChanged" />
+
+                <RadioButton GroupName="rbgroup6" Content="No" Margin="5" Grid.Row="8"  Grid.Column="2" Name="rbQ6low" Checked="rb_checkedChanged" />
+                <RadioButton GroupName="rbgroup6" Content="Yes" Margin="5" Grid.Row="8"  Grid.Column="4" Name="rbQ6high" Checked="rb_checkedChanged" />
+
+                    <RadioButton GroupName="rbgroup7" Content="No" Margin="5" Grid.Row="9"  Grid.Column="2" Name="rbQ7low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup7" Content="Yes" Margin="5" Grid.Row="9"  Grid.Column="3" Name="rbQ7high" Checked="rb_checkedChanged" />
+
+                    <RadioButton GroupName="rbgroup8" Content="No" Margin="5" Grid.Row="10"  Grid.Column="2" Name="rbQ8low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup8" Content="Yes" Margin="5" Grid.Row="10"  Grid.Column="3" Name="rbQ8high" Checked="rb_checkedChanged" />
+
+                    <RadioButton GroupName="rbgroup9" Content="No" Margin="5" Grid.Row="11"  Grid.Column="2" Name="rbQ9low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup9" Content="Yes" Margin="5" Grid.Row="11"  Grid.Column="3" Name="rbQ9high" Checked="rb_checkedChanged" />
+
+                    <RadioButton GroupName="rbgroup10" Margin="5" Grid.Row="13"  Grid.Column="2" Name="rbQ10low" Checked="rb_checkedChanged" >
+                        <RadioButton.Content>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="No
+                                (No carious lesions or restorations in last 24 months)"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton GroupName="rbgroup10" Margin="5" Grid.Row="13"  Grid.Column="3" Name="rbQ10med" Checked="rb_checkedChanged" >
+                        <RadioButton.Content>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Yes
+                                (1-2 carious lesions or restorations in last 24 months)"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton GroupName="rbgroup10" Margin="5" Grid.Row="13"  Grid.Column="4" Name="rbQ10high" Checked="rb_checkedChanged" >
+                        <RadioButton.Content>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Yes
+                                    (≥3 carious lesions or restorations in last 24 months)
+                                    (4 POINTS)"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    
+                    <RadioButton GroupName="rbgroup11" Content="No" Margin="5" Grid.Row="14"  Grid.Column="2" Name="rbQ11low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup11" Content="Yes" Margin="5" Grid.Row="14"  Grid.Column="4" Name="rbQ11high" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup12" Content="No" Margin="5" Grid.Row="15"  Grid.Column="2" Name="rbQ12low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup12" Content="Yes" Margin="5" Grid.Row="15"  Grid.Column="3" Name="rbQ12med" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup13" Content="No" Margin="5" Grid.Row="16"  Grid.Column="2" Name="rbQ13low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup13" Content="Yes" Margin="5" Grid.Row="16"  Grid.Column="3" Name="rbQ13med" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup14"  Margin="5" Grid.Row="17"  Grid.Column="2" Name="rbQ14low" Checked="rb_checkedChanged" >
+                        <RadioButton.Content>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Visually adequate"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton GroupName="rbgroup14"  Margin="5" Grid.Row="17"  Grid.Column="3" Name="rbQ14med" Checked="rb_checkedChanged" >
+                        <RadioButton.Content>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Visually Inadequate (&lt;6 y/o)"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton GroupName="rbgroup14" Margin="5" Grid.Row="17"  Grid.Column="4" Name="rbQ14high" Checked="rb_checkedChanged" >
+                        <RadioButton.Content>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Yes (Severe dry mouth >6 y/o)"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton GroupName="rbgroup15" Content="No" Margin="5" Grid.Row="18"  Grid.Column="2" Name="rbQ15low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup15" Content="Yes" Margin="5" Grid.Row="18"  Grid.Column="3" Name="rbQ15med" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup16" Content="No" Margin="5" Grid.Row="19"  Grid.Column="2" Name="rbQ16low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup16" Content="Yes" Margin="5" Grid.Row="19"  Grid.Column="3" Name="rbQ16med" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup17" Content="No" Margin="5" Grid.Row="20"  Grid.Column="2" Name="rbQ17low" Checked="rb_checkedChanged" />
+                    <RadioButton GroupName="rbgroup17" Content="Yes" Margin="5" Grid.Row="20"  Grid.Column="3" Name="rbQ17med" Checked="rb_checkedChanged" />
+                    <Rectangle Grid.Row="21" Grid.ColumnSpan="5" Fill="DeepSkyBlue"/>
+                    <TextBlock Grid.Row="21" Grid.ColumnSpan="2" Style="{StaticResource header}" Text="Overall Caries Risk" TextWrapping="Wrap" />
+                    <TextBlock x:Name="txtOverallRisk" Grid.Row="21" Grid.Column="2" Style="{StaticResource header}"  Text="{Binding Path=OverallRisk, BindsDirectlyToSource=True,Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+                    <Rectangle Grid.Row="22" Grid.ColumnSpan="5" Fill="DeepSkyBlue"/>
+                    <TextBlock Grid.Row="22" Grid.ColumnSpan="2" Text="Total" Style="{StaticResource header}"  TextWrapping="Wrap" />
+                    <TextBlock x:Name="txtTotal" Grid.Row="22" Grid.Column="2" Style="{StaticResource header}"  Text="{Binding Path=FormTotal, BindsDirectlyToSource=True,Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
+
+        </Grid>
+            </ScrollViewer>
+        </Border>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSubmit" HorizontalAlignment="Right" Margin="5" Content="Submit" Click="btnSubmit_Click" />
+        </StackPanel>
+    </Grid>
+</Page>
